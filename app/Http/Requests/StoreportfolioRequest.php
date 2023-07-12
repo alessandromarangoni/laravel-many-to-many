@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Tecnology;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreportfolioRequest extends FormRequest
@@ -28,6 +29,7 @@ class StoreportfolioRequest extends FormRequest
             "content" => "max:2500",
             "image" => "url|max:2500",
             "type_id" =>'max:2',
+            "tecnologies"=> "nullable|exists:tecnologies,id",
         ];
     }
     public function messages() {

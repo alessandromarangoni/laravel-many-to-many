@@ -10,6 +10,10 @@
                     <h5 class="card-title">{{ $portfolio->title }}</h5>
                     <p class="card-text">{{ $portfolio->content }}</p>
                     <h5>Type: {{$portfolio->type->name}}</h5>
+                    <h3>tecnologie utilizzate</h3>:
+                    @foreach ($portfolio->tecnologies as $item)
+                    <span>{{$item->name}},</span>
+                    @endforeach
                 </div>
             </div>
     </div>

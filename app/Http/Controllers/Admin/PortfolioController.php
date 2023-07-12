@@ -7,6 +7,8 @@ use App\Models\portfolio;
 use App\Models\type;
 use App\Http\Requests\StoreportfolioRequest;
 use App\Http\Requests\UpdateportfolioRequest;
+use App\Models\Tecnology;
+
 
 use function PHPSTORM_META\type;
 
@@ -31,7 +33,8 @@ class PortfolioController extends Controller
     public function create()
     {
         $types = type::all();
-        return view('admin.projects.create',compact('types'));
+        $tecnologies = Tecnology::all();
+        return view('admin.projects.create',compact('types','tecnologies'));
     }
 
     /**
@@ -43,10 +46,11 @@ class PortfolioController extends Controller
     public function store(StoreportfolioRequest $request)
     {
         $data = $request->validated();
+
         $newPortfolio = new Portfolio();
         $newPortfolio->fill($data);
         $newPortfolio->save();
-
+        $newPortfolio->Tecnologies()->sync( $data['tecnologies'] );
         return to_route("admin.portfolio.show", $newPortfolio);
         
     }

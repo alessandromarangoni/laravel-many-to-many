@@ -36,7 +36,15 @@
                         <option value="{{$type->id}}">{{$type->name}}</option>
                     @endforeach
                 </select>
-    
+                
+                @foreach ($tecnologies as $index => $tecnology)
+                    <div class="form-check">
+                        <label for="technologies{{$index}}" class="form-check-label">
+                            <input type="checkbox" value="{{$tecnology->id}}" name="tecnologies[]" id="tecnologies{{$index}}" class="form-check-input">
+                            {{$tecnology->name}}
+                        </label>
+                    </div>
+                @endforeach
                 <input type="submit" class="btn btn-primary form-control mb-4" value="Crea post">
     
             </form>
