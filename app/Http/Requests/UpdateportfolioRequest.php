@@ -24,7 +24,18 @@ class UpdateportfolioRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "title" => "required|min:5|max:250",
+            "content" => "max:2500",
+            "image" => "url|max:2500",
+            "type_id" =>'max:2',
+            "tecnologies"=> "nullable|exists:tecnologies,id",
+        ];
+    }
+    public function messages() {
+        return [
+            "title.required" => "Ogni progetto deve avere un titolo",
+            "content.required" => "Ogni progetto deve avere un contenuto",
+            "img.required" => "Ogni progetto deve avere un immagine"
         ];
     }
 }

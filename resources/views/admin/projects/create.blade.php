@@ -2,11 +2,14 @@
 
 @section('content')
 
-<div class="container-fluid mt-4">
+
+<div class="container-fluid mt-4 bg-primary ">
     <div class="row justify-content-between">
         <h1>Crea un nuovo post</h1>
 
-        @if ($errors->any())
+        <div class="col-6">
+
+            @if ($errors->any())
         <div class="alert alert-danger">
             <ul class="mb-0">
                 @foreach ($errors->all() as $err)
@@ -15,13 +18,11 @@
             </ul>
         </div>
         @endif
-
-        <div class="col-6">
-            <form action="{{ route("admin.portfolio.store") }}" method="POST" class="needs-validation">
+            <form action="{{ route("admin.portfolio.store") }}" method="POST" class="needs-validation" enctype="multipart/form-data">
                 @csrf
     
                 <label for="title">Titolo</label>
-                <input type="text" name="title" id="title" value="{{ old("title") }}" class="form-control mb-4">
+                <input type="text" name="title" id="title" value="" class="form-control mb-4">
     
                 <label for="content">Contenuto</label>
                 <textarea name="content" id="content" cols="30" rows="10" class="form-control mb-4">{{ old("content") }}</textarea>
@@ -39,15 +40,17 @@
                 
                 @foreach ($tecnologies as $index => $tecnology)
                     <div class="form-check">
-                        <label for="technologies{{$index}}" class="form-check-label">
+                        <label for="tecnologies{{$index}}" class="form-check-label">
                             <input type="checkbox" value="{{$tecnology->id}}" name="tecnologies[]" id="tecnologies{{$index}}" class="form-check-input">
                             {{$tecnology->name}}
                         </label>
                     </div>
                 @endforeach
-                <input type="submit" class="btn btn-primary form-control mb-4" value="Crea post">
+                <input type="submit" class="btn btn-light form-control mb-4" value="Crea post">
     
             </form>
         </div>
     </div>
 </div>
+
+@endsection

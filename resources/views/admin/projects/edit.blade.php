@@ -1,0 +1,59 @@
+@extends('layouts.admin')
+
+@section('content')
+
+
+<div class="container-fluid mt-4 bg-primary ">
+    <div class="row justify-content-between">
+        <h1 class="text-white">Modifica il tuo progetto</h1>
+
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $err)
+                    <li>{{ $err }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
+        <div class="col-6">
+            <form action="{{ route("admin.portfolio.update",$portfolio) }}" method="POST" class="needs-validation">
+                @csrf
+                @method("PUT")
+                <label for="title">Titolo</label>
+                <input type="text" name="title" id="title" value="{{ old('title') ?? $portfolio->title}}" class="form-control mb-4">
+    
+                <label for="content">Contenuto</label>
+                <textarea name="content" id="content" cols="30" rows="10" class="form-control mb-4" value="{{ old('content') ?? $portfolio->content}}">{{ old('content') ?? $portfolio->content}}</textarea>
+    
+                <label for="image">URL Immagine</label>
+                <input type="text" name="image" id="image" value="{{ old('title') ?? $portfolio->title}}" class="form-control mb-4">
+                
+
+                <label for="type">
+                    Tipologia:
+                    <select class="form-control mb-4" name="type_id" id="type_id">
+                        <option selected value="{{$portfolio->type->id}}">{{$portfolio->type->name}}</option>
+                        @foreach ($types as $type)
+                            <option value="{{$type->id}}">{{$type->name}}</option>
+                        @endforeach
+                    </select>
+                </label>
+
+                @foreach ($tecnologies as $index => $tecnology)
+                    <div class="form-check">
+                        <label for="tecnologies{{$index}}" class="form-check-label">
+                            <input type="checkbox" value="{{ old('title') ?? $tecnology->id}}" name="tecnologies[]" id="tecnologies{{$index}}" class="form-check-input">
+                            {{$tecnology->name}}
+                        </label>
+                    </div>
+                @endforeach
+                
+                <input type="submit" class="btn btn-light form-control mb-4" value="Crea post">
+        </div>
+    </div>
+</div>
+
+
+@endsection

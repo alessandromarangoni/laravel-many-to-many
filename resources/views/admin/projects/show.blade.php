@@ -15,6 +15,7 @@
                     <span>{{$item->name}},</span>
                     @endforeach
                 </div>
+                <a href="{{route('admin.portfolio.edit', $portfolio)}}"class="btn btn-dark">See</a>
             </div>
     </div>
 </div>

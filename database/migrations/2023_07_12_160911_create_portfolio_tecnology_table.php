@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             //foreign key to portfolio table
             $table->foreignId('portfolio_id')->constrained();
+            
             $table->foreignId('tecnology_id')->constrained();
             $table->timestamps();
         });

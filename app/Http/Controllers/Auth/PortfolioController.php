@@ -74,9 +74,7 @@ class PortfolioController extends Controller
      */
     public function edit(portfolio $portfolio)
     {
-        $types = type::all();
-        $tecnologies = Tecnology::all();
-        return view('admin.projects.edit',compact('portfolio','types','tecnologies'));
+        return view('admin.projects.edit',compact('portfolio'));
     
     }
 
@@ -92,8 +90,7 @@ class PortfolioController extends Controller
         $data=$request->validated();
         $portfolio->fill($data);
         $portfolio->save();
-        $portfolio->Tecnologies()->sync( $data['tecnologies'] );
-
+        dd($portfolio);
         return to_route("admin.portfolio.show", $portfolio);
         
         
