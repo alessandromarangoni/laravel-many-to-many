@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('portfolios', function (Blueprint $table) {
-            $table->foreignId('type_id')->constrained();
+            $table->foreignId('type_id')->after('id')->constrained();
         });
     }
 

@@ -27,8 +27,8 @@
                 <label for="content">Contenuto</label>
                 <textarea name="content" id="content" cols="30" rows="10" class="form-control mb-4">{{ old("content") }}</textarea>
     
-                <label for="image">URL Immagine</label>
-                <input type="text" name="image" id="image" value="{{ old("image") }}" class="form-control mb-4">
+                <label for="image">inserisci Immagine</label>
+                <input type="file" name="image" id="image" value="" class="form-control mb-4">
 
                 <label for="type_id">Categoria</label>
                 <select class="form-control mb-4" name="type_id" id="type_id">

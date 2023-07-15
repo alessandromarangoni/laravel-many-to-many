@@ -27,7 +27,7 @@ class StoreportfolioRequest extends FormRequest
         return [
             "title" => "required|min:5|max:250",
             "content" => "max:2500",
-            "image" => "url|max:2500",
+            "image" => "image|max:2048",
             "type_id" =>'max:2',
             "tecnologies"=> "nullable|exists:tecnologies,id",
         ];

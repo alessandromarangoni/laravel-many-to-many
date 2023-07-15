@@ -8,6 +8,7 @@ use App\Models\type;
 use App\Http\Requests\StoreportfolioRequest;
 use App\Http\Requests\UpdateportfolioRequest;
 use App\Models\Tecnology;
+use Illuminate\Support\Facades\Storage;
 
 
 use function PHPSTORM_META\type;
@@ -47,6 +48,12 @@ class PortfolioController extends Controller
     {
         $data = $request->validated();
 
+        if($request->hasFile('image')){
+
+            $img_path= storage::put('uploads', $data['image']);
+            $data['image'] = $img_path;
+        }
+        
         $newPortfolio = new Portfolio();
         $newPortfolio->fill($data);
         $newPortfolio->save();
@@ -77,7 +84,6 @@ class PortfolioController extends Controller
         $types = type::all();
         $tecnologies = Tecnology::all();
         return view('admin.projects.edit',compact('portfolio','types','tecnologies'));
-    
     }
 
     /**
@@ -87,17 +93,20 @@ class PortfolioController extends Controller
      * @param  \App\Models\portfolio  $portfolio
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateportfolioRequest $request, portfolio $portfolio)
+    public function update(UpdateportfolioRequest $request, portfolio $portfolio )
     {
         $data=$request->validated();
-        $portfolio->fill($data);
-        $portfolio->save();
-        $portfolio->Tecnologies()->sync( $data['tecnologies'] );
 
+        if ($request->hasFile('image')){
+            $img_path= storage::put('uploads', $data['image']);
+            $data['image'] = $img_path;
+
+            $portfolio->fill($data);
+            $portfolio->Tecnologies()->sync( $data['tecnologies'] );
+            $portfolio->update();
+        }
         return to_route("admin.portfolio.show", $portfolio);
         
-        
-
     }
 
     /**
