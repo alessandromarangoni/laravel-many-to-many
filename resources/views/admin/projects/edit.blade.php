@@ -3,18 +3,18 @@
 @section('content')
 
 
-<div class="container-fluid mt-4 bg-primary ">
-    <div class="row justify-content-between">
-        <h1 class="text-white">Modifica il tuo progetto</h1>
+<div class="container-fluid mt-4">
+    <div class="row justify-content-center text-center">
+        <h1 class="">Modifica il tuo progetto</h1>
 
         @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul class="mb-0">
-                @foreach ($errors->all() as $err)
-                    <li>{{ $err }}</li>
-                @endforeach
-            </ul>
-        </div>
+            <div class="alert alert-danger">
+                <ul class="mb-0">
+                    @foreach ($errors->all() as $err)
+                        <li>{{ $err }}</li>
+                    @endforeach
+                </ul>
+            </div>
         @endif
 
         <div class="col-6">
@@ -22,15 +22,12 @@
                 @csrf
                 @method("PUT")
                 <label for="title">Titolo</label>
-                <input type="text" name="title" id="title" value="{{ old('title') ?? $portfolio->title}}" class="form-control mb-4">
-    
+                    <input type="text" name="title" id="title" value="{{ old('title') ?? $portfolio->title}}" class="form-control mb-4">
                 <label for="content">Contenuto</label>
                 <textarea name="content" id="content" cols="30" rows="10" class="form-control mb-4" value="{{ old('content') ?? $portfolio->content}}">{{ old('content') ?? $portfolio->content}}</textarea>
-    
-                <label for="image">inserisci Immagine</label>
+                    <label for="image">inserisci Immagine</label>
                 <input type="file" name="image" id="image" value="" class="form-control mb-4">
                 
-
                 <label for="type">
                     Tipologia:
                     <select class="form-control mb-4" name="type_id" id="type_id">
@@ -41,8 +38,9 @@
                     </select>
                 </label>
 
-                @foreach ($tecnologies as $index => $tecnology)
-                    <div class="form-check">
+                <div  class="d-flex">
+                    @foreach ($tecnologies as $index => $tecnology)
+                    <div class="form-check m-1">
                         <label for="tecnologies{{$index}}" class="form-check-label">
                             <input type="checkbox" value="{{ old('id') ?? $tecnology->id}}"
                             name="tecnologies[]" id="tecnologies{{$index}}"
@@ -51,13 +49,11 @@
                             {{$tecnology->name}}
                         </label>
                     </div>
-                @endforeach
-                
-                @dump($portfolio)
-                <input type="submit" class="btn btn-light form-control mb-4" value="Crea post">
+                    @endforeach
+                </div>
+                <input type="submit" class="btn btn-dark form-control m-4" value="Crea post">
         </div>
     </div>
 </div>
-
 
 @endsection

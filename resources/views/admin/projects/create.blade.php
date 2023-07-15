@@ -3,7 +3,7 @@
 @section('content')
 
 
-<div class="container-fluid mt-4 bg-primary ">
+<div class="container-fluid mt-4">
     <div class="row justify-content-between">
         <h1>Crea un nuovo post</h1>
 
@@ -46,7 +46,7 @@
                         </label>
                     </div>
                 @endforeach
-                <input type="submit" class="btn btn-light form-control mb-4" value="Crea post">
+                <input type="submit" class="btn btn-dark form-control mb-4" value="Crea post">
     
             </form>
         </div>

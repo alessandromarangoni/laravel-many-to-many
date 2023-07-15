@@ -20,7 +20,7 @@ class PortfolioSeeder extends Seeder
             $project = new portfolio();
             $project->title = $faker->sentence(3);
             $project->content = $faker->text(500);
-            $project->image = $faker->imageUrl(800, 600, 'job', true);
+            $project->image = 'uploads/placeholder.jpg';
             $project->type_id=$faker->numberBetween(1, 4);
             $project->save();
         }

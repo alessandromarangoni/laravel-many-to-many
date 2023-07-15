@@ -17,9 +17,10 @@ class TypeSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i=0; $i < 4; $i++) {
+        $types= ['website statico','website vetrina','web application','mobile application','other..'];
+        foreach ($types as $typename) {
             $type = new type();
-            $type->name = $faker->sentence(4);
+            $type->name = $typename;
             $type->img = $faker->imageUrl(800, 600, 'job', true);
             $type->save();
         }
